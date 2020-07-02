@@ -25,11 +25,8 @@ def deploy(c):
 
     project_root_path = '~/blogproject/'
 
-    c.run('su lwl')
-    c.run('conda activate myblog')
-
     # 先停止应用
-    with c.cd(supervisor_conf_path):
+    with c.cd(supervisor_conf_path):      
         cmd = 'supervisorctl stop {}'.format(supervisor_program_name)
         c.run(cmd)
 
@@ -42,7 +39,7 @@ def deploy(c):
     # 安装依赖，迁移数据库，收集静态文件
     with c.cd(project_root_path):
         c.run('python manage.py migrate')
-        c.run('python collectstatic --noinput')
+        c.run('python manage.py collectstatic --noinput')
 
     # 重新启动应用
     with c.cd(supervisor_conf_path):
