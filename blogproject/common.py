@@ -13,13 +13,14 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD:blogproject/settings.py
 SECRET_KEY = 'x3w%_q2-+5dz8p*$x))v(x!^z+wt=mwo5hm1j7+9jc1lbla((#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -27,6 +28,9 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', 'lwl595.top', '120.79.86.154']
 ALLOWED_HOSTS = ['*']
+=======
+
+>>>>>>> 5411907... "Fabric":blogproject/common.py
 
 # Application definition
 
