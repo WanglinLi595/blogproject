@@ -25,9 +25,9 @@ def deploy(c):
 
     project_root_path = '~/blogproject/'
 
-    with c.cd():
-        c.run('su lwl')
-        c.run('conda activate myblog')
+    c.run('su lwl')
+    c.run('conda activate myblog')
+
     # 先停止应用
     with c.cd(supervisor_conf_path):
         cmd = 'supervisorctl stop {}'.format(supervisor_program_name)
