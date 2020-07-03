@@ -1,5 +1,5 @@
 from .common import *
 
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
-DEBUG = Ture
+DEBUG = False
 ALLOWED_HOSTS = ['www.lwl595.top']
