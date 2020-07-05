@@ -1,6 +1,7 @@
 from fabric import task
 from invoke import Responder
-from _credentials import github_username, github_password
+
+from _credentials import github_password, github_username
 
 
 def _get_github_auth_responders():
@@ -21,12 +22,12 @@ def _get_github_auth_responders():
 @task()
 def deploy(c):
     supervisor_conf_path = '~/etc/'
-    supervisor_program_name = 'blogproject'
+    supervisor_program_name = 'hellodjango-blog-tutorial'
 
-    project_root_path = '~/blogproject/'
+    project_root_path = '~/apps/HelloDjango-blog-tutorial/'
 
     # 先停止应用
-    with c.cd(supervisor_conf_path):      
+    with c.cd(supervisor_conf_path):
         cmd = 'supervisorctl stop {}'.format(supervisor_program_name)
         c.run(cmd)
 
@@ -35,11 +36,6 @@ def deploy(c):
         cmd = 'git pull'
         responders = _get_github_auth_responders()
         c.run(cmd, watchers=responders)
-
-    # 安装依赖，迁移数据库，收集静态文件
-    with c.cd(project_root_path):
-        c.run('python manage.py migrate')
-        c.run('python manage.py collectstatic --noinput')
 
     # 重新启动应用
     with c.cd(supervisor_conf_path):
